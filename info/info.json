@@ -1,0 +1,16 @@
+{
+  "username": "bp221",
+  "code": "SC20",
+  "title": "Prediction of wildfire final burned area with image-based Machine learning",
+  "s1": {
+    "name": "Sibo Cheng",
+    "email": "sibo.cheng@imperial.ac.uk",
+    "affiliation": "Department of Computing, Imperial College London"
+  },
+  "s2": {
+    "name": "Rossella Arcucci",
+    "email": "r.arcucci@imperial.ac.uk",
+    "affiliation": "Imperial College London"
+  },
+  "additional-supervisors": ""
+}
