@@ -8,7 +8,7 @@
 
 Predicting the final burn area of a wildfire is essential to reduce economic losses and environmental damage caused by wildfires. However, this is an extremely challenging task due to the complexity and diversity of factors which influence wildfires. Existing works and models need further improvement in terms of computational time, computational cost and forecast accuracy. In this paper, we introduce image-based machine learning into this field. Based on the advanced Densely Connected Convolutional Network (DenseNet), we propose a new wildfire prediction model, Fire-Image-DenseNet (FIDN). This model integrates geographic and meteorological parameters such as biomass, land slope, tree, grass density, wind, snow, water and precipitation. We then applied the model to wildfires in the western US mainly located in California in recent years. After comparison with satellite imagery, the model can forecast the final burn area of the wildfires accurately and quickly.
 
-In summary, we have made following contributions in this work: 
+In summary, we have made following contributions in this work:
 
 - A predictive model, Fire-Image-DenseNet (FIDN), for predicting the final burned area of wildfire based on remote sensing and climate data is proposed. The model accepts as input images of current wildfire-burned areas preprocessed from Moderate Resolution Imaging Spectroradiometer(MODIS) satellite observations based on the latitude and longitude coordinates of the area and data of relevant geographical and meteorological features (e.g. vegetation, water, precipitation) extracted from the Oak Ridge National Laboratory (ORNL) DACC data repository, the Project for On-Board Autonomy - Végétation (PROBA-V) satellite, etc.
 - The proposed model benefits from DenseNet, which, with taking full account of multi-dimensional parameters, it still significantly reduces computational costs compared to traditional forecasting models.
@@ -16,8 +16,6 @@ In summary, we have made following contributions in this work:
 - The proposed model is general which does not require separate adjustment of parameters for different fires, as is the case with surrogate model and some physical models.
 
 ![model_structure](picture/model_structure.jpg)
-
-
 
 ## Project Structure
 
@@ -52,7 +50,6 @@ irp-bp221
 │   └── bp221-project-plan.pdf
 └── train.py - Constructing and training a FIDN model 
 ```
-
 
 ## Code Metadata
 
@@ -90,23 +87,23 @@ pip3 install -r requirements.txt
 
 You can download the processed dataset used in this study from this [link](https://drive.google.com/file/d/1pRUVeH7CiGfo_YgkXaA_PkEXP4yNQvRM/view?usp=sharing), which contains a total of 304 fire events in the western United States (mainly California 2012 to 2019) for the year, each fire event consisting of 15 images stored in a different channel. The meaning of each channel can be found in the table below, or you can click on the link to download to the raw data.
 
-| Channel No. | Description                                             | Source     | Resolution   | Link                                                         |
-| ----------- | ------------------------------------------------------- | ---------- | ------------ | ------------------------------------------------------------ |
-| 1           | burn area in day 0                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642) |
-| 2           | burn area in day 1                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642) |
-| 3           | burn area in Day 2                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642) |
-| 4           | biomass above ground                                    | ORNL  DACC | 300 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/NASA_ORNL_biomass_carbon_density_v1) |
-| 5           | biomass below ground                                    | ORNL  DACC | 300 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/NASA_ORNL_biomass_carbon_density_v1) |
-| 6           | slope                                                   | CSP        | 270 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/CSP_ERGo_1_0_Global_ALOS_mTPI) |
+| Channel No. | Description                                             | Source     | Resolution   | Link                                                                                                             |
+| ----------- | ------------------------------------------------------- | ---------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| 1           | burn area in day 0                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642)                                                    |
+| 2           | burn area in day 1                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642)                                                    |
+| 3           | burn area in Day 2                                      | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642)                                                    |
+| 4           | biomass above ground                                    | ORNL  DACC | 300 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/NASA_ORNL_biomass_carbon_density_v1)         |
+| 5           | biomass below ground                                    | ORNL  DACC | 300 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/NASA_ORNL_biomass_carbon_density_v1)         |
+| 6           | slope                                                   | CSP        | 270 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/CSP_ERGo_1_0_Global_ALOS_mTPI)               |
 | 7           | tree density                                            | PROBA-V    | 100 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global) |
 | 8           | grass density                                           | PROBA-V    | 100 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global) |
 | 9           | bare density                                            | PROBA-V    | 100 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global) |
 | 10          | snow density                                            | PROBA-V    | 100 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global) |
 | 11          | water density                                           | PROBA-V    | 100 meters   | [Download](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_Landcover_100m_Proba-V-C3_Global) |
-| 12          | 10m u-component of wind(monthly average)                | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY) |
-| 13          | 10m v-component of wind(monthly average)                | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY) |
-| 14          | total precipitation(rainfall + snowfall) (monthly sums) | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY) |
-| 15          | final burn area                                         | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642) |
+| 12          | 10m u-component of wind(monthly average)                | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY)                          |
+| 13          | 10m v-component of wind(monthly average)                | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY)                          |
+| 14          | total precipitation(rainfall + snowfall) (monthly sums) | ERA5       | 27830 meters | [Download](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY)                          |
+| 15          | final burn area                                         | MODIS      | about 1km    | [Download](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1642)                                                    |
 
 ## Usage
 
@@ -125,8 +122,7 @@ FIDN.dataset.
 
 ### CA Module
 
-The CA module script is tied to the manually extracted data. To use the script you first need to unzip `CA/data.zip` into the `CA/data` folder and then execute it using the following command. The `data.zip`includes 30 sets of wildfire events in the western United States, including information on vegetation type, vegetation density, slope, wind speed, wind direction, latitude and longitude, and more. The data includes images of wildfires burning on day 0, day 1 and day 2, and you can control which day the simulation starts from by using the `start_from` variable in the code. This information was extracted from the [IFTDSS](
-https://iftdss.firenet.gov) and the raw data can be accessed from this [link](https://drive.google.com/file/d/1v0ac1aD2ko1or0CWtlqAGQJUSIKZpVik/view?usp=sharing). 
+The CA module script is tied to the manually extracted data. To use the script you first need to unzip `CA/data.zip` into the `CA/data` folder and then execute it using the following command. The `data.zip`includes 30 sets of wildfire events in the western United States, including information on vegetation type, vegetation density, slope, wind speed, wind direction, latitude and longitude, and more. The data includes images of wildfires burning on day 0, day 1 and day 2, and you can control which day the simulation starts from by using the `start_from` variable in the code. This information was extracted from the [IFTDSS](https://iftdss.firenet.gov) and the raw data can be accessed from this [link](https://drive.google.com/file/d/1v0ac1aD2ko1or0CWtlqAGQJUSIKZpVik/view?usp=sharing).
 
 ```bash
 cd CA/
@@ -151,6 +147,7 @@ global_config = dict(
     save_path='./models',
 )
 ```
+
 ##### Local Config
 
 Here you can configure the epochs, batch size, loss, optimizer and give the current model an alias.
@@ -205,7 +202,9 @@ This jupyter notebook is used to evaluate and compare the metrics and performanc
 
 **Bo Pang**
 
-bo.pang21@imperial.ac.uk
+- bo.pang21@imperial.ac.uk
+- bo.pang20@outlook.com
 
-bo.pang20@outlook.com
+**Sibo Cheng**
 
+- sibo.cheng@imperial.ac.uk
