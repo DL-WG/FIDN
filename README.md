@@ -1,4 +1,6 @@
-# Prediction of wildfire final burned area with image-based Machine learning
+# FIDN
+
+Prediction of wildfire final burned area with image-based Machine learning
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-important.svg)](https://github.com/ese-msc-2021/irp-bp221/blob/main/LICENSE) ![version](https://img.shields.io/badge/version-1.0-brightgreen)![python](https://img.shields.io/badge/python-v3.9.13-yellow)![python](https://img.shields.io/badge/tensorflow-v2.9.1-orange)
 
